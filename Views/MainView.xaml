@@ -5,17 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Final.Views"
         xmlns:viewmodels="clr-namespace:Final.ViewModels"
+        xmlns:views="clr-namespace:Final.Views"
         mc:Ignorable="d"
         Title="Météo" Height="500" Width="820">
 
-    <Window.DataContext>
-        <viewmodels:MainViewModel/>
-    </Window.DataContext>
 
     <Window.Resources>
-        <!-- VM -> View -->
         <DataTemplate DataType="{x:Type viewmodels:MeteoViewModel}">
-            <local:MeteoView/>
+            <views:MeteoView/>
         </DataTemplate>
     </Window.Resources>
 
@@ -30,7 +27,7 @@
                       Command="{Binding OpenConfigurationWindowCommand}"/>
         </Menu>
 
-        <!-- ICI: ton UserControl s'affiche automatiquement -->
         <ContentControl Grid.Row="1" Content="{Binding ViewModelActuel}"/>
+
     </Grid>
 </Window>

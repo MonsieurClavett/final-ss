@@ -21,6 +21,8 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
+            
+            
 
             <!-- Liste régions -->
             <Border Grid.Row="0"
@@ -28,28 +30,12 @@
                     BorderThickness="1"
                     Background="White">
                 <ListBox ItemsSource="{Binding Regions}"
-                         SelectedItem="{Binding SelectedRegion}"
-                         ScrollViewer.VerticalScrollBarVisibility="Auto">
+         SelectedItem="{Binding RegionSelectionnee}"
+         ScrollViewer.VerticalScrollBarVisibility="Auto"/>
 
-                    <!-- Placeholder -->
-                    <ListBoxItem>
-                        <StackPanel Margin="6">
-                            <TextBlock Text="Shawinigan" FontWeight="SemiBold"/>
-                            <TextBlock Text="Lat: 46,56984172477484" FontSize="11"/>
-                            <TextBlock Text="Lon: -72,73811285651442" FontSize="11"/>
-                        </StackPanel>
-                    </ListBoxItem>
-
-                    <ListBoxItem>
-                        <StackPanel Margin="6">
-                            <TextBlock Text="Dakar" FontWeight="SemiBold"/>
-                            <TextBlock Text="Lat: 14,716523136701086" FontSize="11"/>
-                            <TextBlock Text="Lon: -17,468591458177478" FontSize="11"/>
-                        </StackPanel>
-                    </ListBoxItem>
-
-                </ListBox>
             </Border>
+
+
 
             <!-- Form ajout région -->
             <StackPanel Grid.Row="1" Margin="0,10,0,0">
@@ -60,7 +46,8 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Text="Région :" VerticalAlignment="Center"/>
-                    <TextBox Grid.Column="1" Height="24"/>
+                    <TextBox Grid.Column="1" Height="24"
+                 Text="{Binding Nom, UpdateSourceTrigger=PropertyChanged}"/>
                 </Grid>
 
                 <Grid Margin="0,0,0,6">
@@ -69,7 +56,8 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Text="Latitude :" VerticalAlignment="Center"/>
-                    <TextBox Grid.Column="1" Height="24"/>
+                    <TextBox Grid.Column="1" Height="24"
+                 Text="{Binding Latitude, UpdateSourceTrigger=PropertyChanged}"/>
                 </Grid>
 
                 <Grid Margin="0,0,0,8">
@@ -78,14 +66,17 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Text="Longitude :" VerticalAlignment="Center"/>
-                    <TextBox Grid.Column="1" Height="24"/>
+                    <TextBox Grid.Column="1" Height="24"
+                 Text="{Binding Longitude, UpdateSourceTrigger=PropertyChanged}"/>
                 </Grid>
 
                 <Button Content="+"
-                        Width="34"
-                        Height="24"
-                        HorizontalAlignment="Left"/>
+            Width="34"
+            Height="24"
+            HorizontalAlignment="Left"
+            Command="{Binding CommandeAjouter}"/>
             </StackPanel>
+
         </Grid>
 
         <!-- =========================
@@ -116,7 +107,8 @@
                         Content="X"
                         Width="26"
                         Height="22"
-                        Margin="8,0,0,0"/>
+                        Margin="8,0,0,0"
+                        Command="{Binding CommandeSupprimer}"/>
             </Grid>
 
             <!-- Prévisions -->

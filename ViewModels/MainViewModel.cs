@@ -10,29 +10,20 @@ namespace Final.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
-        private MeteoViewModel _meteoViewModel;
         private BaseViewModel _viewModelActuel;
-
-        public MainViewModel() 
-        { 
-            _meteoViewModel = new MeteoViewModel();
-            ViewModelActuel = _meteoViewModel;
-
-            OpenConfigurationWindowCommand = new RelayCommand(OpenConfigurationWindow, null);
-
-        }
-
         public BaseViewModel ViewModelActuel
         {
-            get { return _viewModelActuel; }
-            set
-            {
-                _viewModelActuel = value;
-                OnPropertyChanged();
-            }
+            get => _viewModelActuel;
+            set { _viewModelActuel = value; OnPropertyChanged(); }
         }
 
-        public RelayCommand OpenConfigurationWindowCommand { get; set; }
+        public RelayCommand OpenConfigurationWindowCommand { get; }
+
+        public MainViewModel(MeteoViewModel meteoViewModel)
+        {
+            ViewModelActuel = meteoViewModel; 
+            OpenConfigurationWindowCommand = new RelayCommand(OpenConfigurationWindow, null);
+        }
         public void OpenConfigurationWindow(object? parameter)
         {
             var configWindow = new ConfigurationView

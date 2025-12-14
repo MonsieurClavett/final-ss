@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Final.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,9 @@ namespace Final.Views
         public ConfigurationView()
         {
             InitializeComponent();
+
+            var vm = new ConfigurationViewModel(() => this.Close());
+            DataContext = vm;
         }
     }
 }
